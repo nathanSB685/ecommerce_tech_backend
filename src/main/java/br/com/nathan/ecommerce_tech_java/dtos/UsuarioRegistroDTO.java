@@ -12,7 +12,7 @@ public record UsuarioRegistroDTO(
         @CPF(message = "Formato de CPF inválido")
         String cpf,
 
-        @NotBlank(message = "O e-mail é obrigatório")
+        @NotBlank(message = "O E-mail é obrigatório")
         @Email(message = "Formato de e-mail inválido")
         String email,
 
@@ -25,24 +25,5 @@ public record UsuarioRegistroDTO(
                 regexp = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).*$",
                 message = "A senha deve conter pelo menos um caractere especial"
         )
-        String senha,
-
-        // Podemos receber o endereço como campos separados ou um objeto aninhado
-        String logradouro, // Opcional, sem anotação
-        String complemento, // Opcional, sem anotação
-
-        @NotBlank(message = "O número é obrigatório")
-        String numero,
-
-        @NotBlank(message = "O CEP é obrigatório")
-        String cep,
-
-        @NotBlank(message = "O bairro é obrigatório")
-        String bairro,
-
-        @NotBlank(message = "A cidade é obrigatória")
-        String cidade,
-
-        @NotBlank(message = "O estado é obrigatório")
-        String estado
+        String senha
 ) {}

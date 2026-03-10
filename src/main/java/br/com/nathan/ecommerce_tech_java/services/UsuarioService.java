@@ -6,6 +6,7 @@ import br.com.nathan.ecommerce_tech_java.models.Usuario;
 import br.com.nathan.ecommerce_tech_java.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UsuarioService {
@@ -13,8 +14,11 @@ public class UsuarioService {
     // O modificador final é obrigatório para o @RequiredArgsConstructor funcionar
     private final UsuarioRepository repository;
 
-    public UsuarioService(UsuarioRepository repository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UsuarioService(UsuarioRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
@@ -32,18 +36,8 @@ public class UsuarioService {
         novoUsuario.setCpf(dto.cpf());
         novoUsuario.setEmail(dto.email());
         novoUsuario.setCelular(dto.celular());
-        novoUsuario.setSenha(dto.senha());
 
-        Endereco endereco = new Endereco();
-        endereco.setLogradouro(dto.logradouro());
-        endereco.setComplemento(dto.complemento());
-        endereco.setNumero(dto.numero());
-        endereco.setCep(dto.cep());
-        endereco.setBairro(dto.bairro());
-        endereco.setCidade(dto.cidade());
-        endereco.setEstado(dto.estado());
-
-        novoUsuario.setEndereco(endereco);
+        novoUsuario.setSenha(passwordEncoder.encode(dto.senha()));
 
         return repository.save(novoUsuario);
     }

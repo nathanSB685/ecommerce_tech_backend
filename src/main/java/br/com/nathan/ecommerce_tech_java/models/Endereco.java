@@ -6,24 +6,12 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Endereco {
 
-    // Opcionais (sem anotação, o banco aceita nulo)
     private String logradouro;
     private String complemento;
-
-    // Obrigatórios
-    @Column(nullable = false)
     private String numero;
-
-    @Column(nullable = false)
     private String bairro;
-
-    @Column(nullable = false)
     private String cidade;
-
-    @Column(nullable = false)
     private String estado;
-
-    @Column(nullable = false, length = 9) // CEP geralmente tem tamanho fixo
     private String cep;
 
     // GETTERS SETTERS

@@ -16,7 +16,8 @@ public class Usuario {
     private String nome;
 
     @CPF(message = "CPF inválido")
-    @Column(nullable = false, unique = true, length = 14)
+    @Convert(converter = CpfConverter.class)
+    @Column(nullable = false, unique = true)
     private String cpf;
 
     @Column(nullable = false, unique = true)
