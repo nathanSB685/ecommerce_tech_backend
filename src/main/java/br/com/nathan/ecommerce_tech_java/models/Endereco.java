@@ -14,7 +14,7 @@ public class Endereco {
     private String estado;
     private String cep;
 
-    // GETTERS SETTERS
+    // Getters Setters
     public String getLogradouro() { return logradouro; }
     public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
 

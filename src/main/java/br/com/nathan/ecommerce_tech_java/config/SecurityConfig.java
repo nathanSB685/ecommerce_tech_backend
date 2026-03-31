@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Desabilita proteção CSRF (necessário para APIs REST)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/usuarios").permitAll() // Libera o cadastro
+                        .requestMatchers("/api/produtos/**").permitAll()
                         // .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Descomente se o CORS reclamar
                         .anyRequest().authenticated() // Bloqueia todo o resto
                 );
